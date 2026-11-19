@@ -1,12 +1,16 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nebula Search</title><link rel="stylesheet" href="/style.css"></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nebula Browser</title><link rel="stylesheet" href="/style.css"></head>
 <body>
-<header class="top"><a class="mini-logo" href="/" aria-label="Nebula home">N<span>e</span>b<span>u</span>la</a><span>Independent search preview</span></header>
-<main id="main" class="home">
-  <h1 class="logo" aria-label="Nebula"><span>N</span><span>e</span><span>b</span><span>u</span><span>l</span><span>a</span></h1>
-  <form id="searchForm"><div class="search-box"><span class="magnify">⌕</span><input id="searchInput" placeholder="Search Nebula or enter a URL" autocomplete="off" required><button type="submit" aria-label="Search" class="search-submit">⌕</button></div><div class="buttons"><button type="submit">Nebula Search</button><button type="button" id="clearBtn">Clear</button></div></form>
-  <nav id="tabs" hidden aria-label="Search categories"><button type="button" data-tab="all" class="active">All</button><button type="button" data-tab="images">Images</button><button type="button" data-tab="videos">Videos</button><button type="button" data-tab="news">News</button></nav>
-  <section id="result" aria-live="polite"></section>
-</main>
-<footer>Search results powered by Wikipedia · Nebula</footer><script src="/script.js"></script>
-</body></html>
+<div class="browser">
+ <div class="tabbar"><div class="brand">✦ Nebula</div><div id="tabList" class="tablist" role="tablist" aria-label="Browser tabs"></div><button id="newTab" title="New tab" aria-label="New tab">＋</button></div>
+ <div class="toolbar">
+  <button id="back" title="Back" aria-label="Back">←</button><button id="forward" title="Forward" aria-label="Forward">→</button>
+  <button id="refresh" title="Refresh" aria-label="Refresh">↻</button><button id="home" title="Home" aria-label="Home">⌂</button>
+  <form id="addressForm"><span>⌕</span><input id="address" aria-label="Search or enter URL" placeholder="Search Nebula or enter a URL" autocomplete="off"><button type="submit">Go</button></form>
+  <button id="bookmark" title="Bookmark this page" aria-label="Bookmark">☆</button><button id="showBookmarks" title="Bookmarks" aria-label="Show bookmarks">☷</button>
+ </div>
+ <div id="bookmarksPanel" class="bookmarks" hidden><strong>Bookmarks</strong><div id="bookmarksList"></div></div>
+ <main id="viewport" aria-live="polite"></main>
+ <div class="status">Nebula Browser · Embedded websites may block display · Search results from Wikipedia</div>
+</div>
+<script src="/script.js"></script></body></html>
