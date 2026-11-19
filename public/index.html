@@ -1,3 +1,12 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nebula</title><link rel="stylesheet" href="/style.css"></head>
-<body><header><span>Nebula Proxy</span><a href="#about">About</a></header><main><h1 class="logo" aria-label="Nebula"><span>N</span><span>e</span><span>b</span><span>u</span><span>l</span><span>a</span></h1><p>Explore the web</p><form id="searchForm"><div class="search-box"><span aria-hidden="true">⌕</span><input id="searchInput" placeholder="Search the web or enter a URL" aria-label="Search the web or enter a URL" required></div><div class="buttons"><button type="submit">Nebula Search</button><button type="button" id="clearBtn">Clear</button></div></form><section id="result" aria-live="polite"></section></main><footer id="about"><span>Nebula Proxy</span><span>Powered by Node.js</span></footer><script src="/script.js"></script></body></html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nebula Search</title><link rel="stylesheet" href="/style.css"></head>
+<body>
+<header class="top"><a class="mini-logo" href="/" aria-label="Nebula home">N<span>e</span>b<span>u</span>la</a><span>Independent search preview</span></header>
+<main id="main" class="home">
+  <h1 class="logo" aria-label="Nebula"><span>N</span><span>e</span><span>b</span><span>u</span><span>l</span><span>a</span></h1>
+  <form id="searchForm"><div class="search-box"><span class="magnify">⌕</span><input id="searchInput" placeholder="Search Nebula or enter a URL" autocomplete="off" required><button type="submit" aria-label="Search" class="search-submit">⌕</button></div><div class="buttons"><button type="submit">Nebula Search</button><button type="button" id="clearBtn">Clear</button></div></form>
+  <nav id="tabs" hidden aria-label="Search categories"><button type="button" data-tab="all" class="active">All</button><button type="button" data-tab="images">Images</button><button type="button" data-tab="videos">Videos</button><button type="button" data-tab="news">News</button></nav>
+  <section id="result" aria-live="polite"></section>
+</main>
+<footer>Search results powered by Wikipedia · Nebula</footer><script src="/script.js"></script>
+</body></html>
