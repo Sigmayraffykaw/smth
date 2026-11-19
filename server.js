@@ -4,6 +4,30 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const ALLOWED_HOSTS = new Set(["example.com", "www.example.com"]);
 app.use(express.static("public"));
+
+app.get("/api/search", async (req, res) => {
+  const q = typeof req.query.q === "string" ? req.query.q.trim().slice(0, 150) : "";
+  if (!q) return res.status(400).json({ error: "Enter a search term." });
+  try {
+    const url = new URL("https://en.wikipedia.org/w/api.php");
+    url.search = new URLSearchParams({
+      action: "query", list: "search", srsearch: q,
+      srlimit: "10", format: "json", utf8: "1"
+    }).toString();
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(10000),
+      headers: { "User-Agent": "NebulaSearch/1.0 (educational search demo)" }
+    });
+    if (!response.ok) throw new Error("Search service unavailable.");
+    const data = await response.json();
+    res.json({ results: (data.query?.search || []).map(item => ({
+      title: item.title,
+      description: cheerio.load(item.snippet || "").text(),
+      url: "https://en.wikipedia.org/wiki/" + encodeURIComponent(item.title.replace(/ /g, "_"))
+    })) });
+  } catch (err) { res.status(502).json({ error: "Search unavailable. Try again shortly." }); }
+});
+
 app.get("/api/proxy", async (req, res) => {
   try {
     if (typeof req.query.url !== "string") return res.status(400).json({error:"Enter a URL."});
